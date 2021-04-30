@@ -1,14 +1,17 @@
 {
-	"name": "covid-analyst",
+	"homepage": "http://simoneyliu.github.io/covid-analyst",
+	"name": "covid-analysis",
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
 		"@testing-library/jest-dom": "^5.12.0",
 		"@testing-library/react": "^11.2.6",
 		"@testing-library/user-event": "^12.8.3",
+		"@types/bootstrap": "^5.0.13",
 		"@types/jest": "^26.0.23",
 		"@types/node": "^15.0.1",
 		"@types/react-dom": "^17.0.3",
+		"lodash": "^4.17.21",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
 		"react-scripts": "4.0.3",
@@ -19,11 +22,15 @@
 	},
 	"scripts": {
 		"start": "npm run sass && react-scripts start",
-		"build": "react-scripts build",
+		"build": "npm run sass && react-scripts build",
+		"start wp": "npm run sass && webpack serve --open",
+		"build wp": "npm run sass && webpack --mode production",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
 		"sass": "npx sass src/styles/input.scss src/assets/styles/ui.css",
-		"sassWatch": "sass --watch src/styles/input.scss src/assets/styles/ui.css"
+		"sassWatch": "sass --watch src/styles/input.scss src/assets/styles/ui.css",
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d build"
 	},
 	"eslintConfig": {
 		"extends": [
@@ -44,6 +51,28 @@
 		]
 	},
 	"devDependencies": {
-		"typescript": "^4.2.4"
+		"@babel/core": "^7.14.0",
+		"@babel/plugin-transform-runtime": "^7.12.1",
+		"@babel/preset-env": "^7.14.0",
+		"@babel/preset-react": "^7.13.13",
+		"@babel/preset-typescript": "^7.12.1",
+		"@babel/runtime": "^7.12.1",
+		"@types/fork-ts-checker-webpack-plugin": "^0.4.5",
+		"@types/webpack": "^4.41.27",
+		"@types/webpack-dev-server": "^3.11.3",
+		"@typescript-eslint/eslint-plugin": "^4.22.0",
+		"@typescript-eslint/parser": "^4.22.0",
+		"babel-loader": "^8.1.0",
+		"eslint": "^7.25.0",
+		"eslint-plugin-react": "^7.23.2",
+		"eslint-plugin-react-hooks": "^4.2.0",
+		"file-loader": "^6.1.1",
+		"fork-ts-checker-webpack-plugin": "^4.1.6",
+		"gh-pages": "^3.1.0",
+		"ts-node": "^9.1.1",
+		"typescript": "^4.2.4",
+		"webpack": "^4.44.2",
+		"webpack-cli": "^4.6.0",
+		"webpack-dev-server": "^3.11.1"
 	}
 }
