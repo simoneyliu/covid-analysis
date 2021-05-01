@@ -54,9 +54,7 @@ const config: webpack.Configuration = {
 		filename: "bundle.js",
 	},
 	devServer: {
-		contentBase: path.join(__dirname, "build"),
-		compress: true,
-		port: 4000,
+		disableHostCheck: true,
 	},
 	plugins: [
 		new ForkTsCheckerWebpackPlugin({

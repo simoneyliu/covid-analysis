@@ -16,6 +16,7 @@ html {
 }
 body {
 	margin: 0;
+	background-color: #050a30;
 }
 .wave-container {
 	position: relative;
@@ -36,8 +37,8 @@ body {
 .wave-container > svg {
 	display: block;
 	transform-origin: bottom;
-	animation: animateWave 1000ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
-	background-color: white;
+	animation: animateWave 800ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
+	background-color: #050a30;
 }
 .wave-container > svg > path {
 	fill: #f5ded4;
@@ -48,14 +49,21 @@ body {
 	width: 100%;
 }
 .panel_img > img {
-	height: 30vh;
+	height: 25vh;
 	transform: translateY(-40px) scale(2);
 }
 
+.last_update {
+	color: white;
+	text-align: center;
+	font-size: 14px;
+}
+
 // For Mobile
-@media only screen and (max-width: 991px) {
+@media only screen and (max-width: 767px) {
 	.panel_img > img {
 		height: 100%;
 		width: 100%;
+		transform: translateY(0px) scale(1.1);
 	}
 }

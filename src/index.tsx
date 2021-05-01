@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./assets/styles/ui.css";
+import { Collection } from "./components/Collection";
 import { Panel } from "./components/Panel";
 
 class MasterWrapper extends React.Component {
@@ -8,6 +9,7 @@ class MasterWrapper extends React.Component {
 		return (
 			<div className="master_wrapper">
 				<Panel />
+				<Collection />
 			</div>
 		);
 	}
