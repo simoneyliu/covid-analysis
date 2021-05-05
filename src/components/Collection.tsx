@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
 import React from "react";
+import { EntireUS } from "./EntireUS";
 import { get, useFetch } from "./Fetchers";
 import { StatCard } from "./StatCard";
 
