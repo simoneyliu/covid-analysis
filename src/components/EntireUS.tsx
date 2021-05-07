@@ -1,21 +1,24 @@
 import { useFetch } from "./Fetchers";
 import "react-circular-progressbar/dist/styles.css";
-import { CovidData } from "../types/CustomTypes";
+import { USCovidData } from "../types/USTypes";
+import usFlag from "../assets/img/flag_us.png";
 
-function EntireUS(props: { url: string }) {
-	const { status, data } = useFetch(props.url);
+const { REACT_APP_COVID_API_KEY } = process.env;
+
+function EntireUS() {
+	const url_US_data = `https://api.covidactnow.org/v2/country/US.json?apiKey=${REACT_APP_COVID_API_KEY}`;
+	const url_US_timeseries = `https://api.covidactnow.org/v2/country/US.timeseries.json?apiKey=${REACT_APP_COVID_API_KEY}`;
+
+	const data = useFetch(url_US_data);
+	const dataTimeSeries = useFetch(url_US_timeseries);
+
 	let vaccinatedPercentage: any = 0;
 	let totalVaccinated: any = "";
 	let newCases: any = "";
 	let newDeaths: any = "";
 	let updateDate: any;
 
-	if (status === "fetched") {
-		console.log(data);
-	}
-	// const percentage = 66;
-
-	function vaccinationsCompletedPercentage(data: CovidData) {
+	function vaccinationsCompletedPercentage(data: USCovidData) {
 		let percentage =
 			(data.actuals.vaccinationsCompleted / data.population) * 100;
 		console.log(percentage);
@@ -51,6 +54,10 @@ function EntireUS(props: { url: string }) {
 		updateDate = date.toLocaleDateString("en-US", options);
 	}
 
+	if (dataTimeSeries) {
+		console.log("dataTimeSeries: ", dataTimeSeries);
+	}
+
 	let isMobile = false;
 	if (window.screen.width < 800) {
 		isMobile = true;
@@ -79,6 +86,9 @@ function EntireUS(props: { url: string }) {
 				</div> */}
 				<div className="container">
 					<div className="card">
+						<div className="flag-container">
+							<img src={usFlag} alt="us_flag"></img>
+						</div>
 						<h3 className="title">Total Vaccinated</h3>
 						<h2 className="title big-font">{totalVaccinated}</h2>
 						<h5 className="title small-font">
@@ -130,30 +140,3 @@ function EntireUS(props: { url: string }) {
 }
 
 export { EntireUS };
-
-//Compare 7 - 30days
-/* <div className="metric">
-							<div className="metric-inner">
-								<header className="metric-header">
-									<div className="metric-title">7 and 30 Day Comparison</div>
-								</header>
-								<div className="metric-body viz-basic-with-7-and-40-day-comparison">
-									<div className="value">
-										<div className="current-value">
-											<div className="primary-value">210</div>
-											<div>cases</div>
-										</div>
-										<div className="comparison_wrapper">
-											<div className="left_comparison">
-												<div className="green">&#9660; 10%</div>
-												<div>7 days ago</div>
-											</div>
-											<div className="right_comparison">
-												<div className="red">&#9650; 12%</div>
-												<div>30 days ago</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div> */

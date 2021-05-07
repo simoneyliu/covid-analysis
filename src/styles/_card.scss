@@ -22,10 +22,6 @@
 	color: var(--theme-dark-blue);
 }
 
-.card:not(:first-child) {
-	margin-left: -50px;
-}
-
 // .card:hover {
 // 	transform: translateY(-20px);
 // 	transition: 0.4s ease-out;
@@ -124,4 +120,14 @@ svg {
 }
 .last-update {
 	text-align: center;
+}
+
+.flag-container {
+	position: absolute;
+	top: 15px;
+	left: 10px;
+}
+
+.flag-container > img {
+	width: 30px;
 }

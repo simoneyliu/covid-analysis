@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { CovidData } from "../types/CustomTypes";
+import { USTimeSeries } from "../types/USTimeSeriesTypes";
+import { USCovidData } from "../types/USTypes";
 
 async function get(path: string) {
 	try {
@@ -12,23 +13,20 @@ async function get(path: string) {
 }
 
 const useFetch = (url: string) => {
-	const [status, setStatus] = useState("idle");
-	const [data, setData] = useState<CovidData>();
+	const [data, setData] = useState<USCovidData | USTimeSeries>();
 
 	useEffect(() => {
 		if (!url) return;
 		const fetchData = async () => {
-			setStatus("fetching");
 			const response = await axios.get(url);
 			const data = response;
 			setData(data.data);
-			setStatus("fetched");
 		};
 
 		fetchData();
 	}, [url]);
 
-	return { status, data };
+	return data;
 };
 
 export { get, useFetch };

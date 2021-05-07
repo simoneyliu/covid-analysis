@@ -1174,6 +1174,7 @@ h1 {
     top: 19px;
     left: 60px;
     font-weight: bold;
+    color: white;
   }
 }
 .daily_status {
@@ -1237,10 +1238,6 @@ h1 {
   position: relative;
   left: 0px;
   color: var(--theme-dark-blue);
-}
-
-.card:not(:first-child) {
-  margin-left: -50px;
 }
 
 .title {
@@ -1325,6 +1322,16 @@ svg {
 
 .last-update {
   text-align: center;
+}
+
+.flag-container {
+  position: absolute;
+  top: 15px;
+  left: 10px;
+}
+
+.flag-container > img {
+  width: 30px;
 }
 
 /*# sourceMappingURL=ui.css.map */

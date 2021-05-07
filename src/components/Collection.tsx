@@ -2,8 +2,7 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
 import React from "react";
-import { EntireUS } from "./EntireUS";
-import { get, useFetch } from "./Fetchers";
+import { get } from "./Fetchers";
 import { StatCard } from "./StatCard";
 
 export interface TodayReport {
@@ -178,25 +177,4 @@ class Collection extends React.Component<CollectionProps, CollectionState> {
 	}
 }
 
-// Another way to fetch and render data
-function FetchData(props: { url: string }) {
-	const { status, data } = useFetch(props.url);
-	let totalUSTodayCases = 0;
-	let totalUSDeathCases = 0;
-	let totalTodayCases = 0;
-	let totalDeathCases = 0;
-
-	const todayDataUS = {
-		cases_us: totalUSTodayCases,
-		deaths_us: totalUSDeathCases,
-		cases_globally: totalTodayCases,
-		deaths_globally: totalDeathCases,
-	};
-
-	console.log("status:", status);
-	console.log("data:", data);
-
-	return <div>{todayDataUS.cases_us}</div>;
-}
-
-export { Collection, FetchData };
+export { Collection };
