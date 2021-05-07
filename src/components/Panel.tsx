@@ -5,7 +5,7 @@ import { MenuComponent } from "./Menu";
 class Panel extends React.Component {
 	render() {
 		return (
-			<div className="panel_container">
+			<div className="sticky">
 				<MenuComponent />
 				{/* <div className="wave-container">
 					<div className="panel_img">

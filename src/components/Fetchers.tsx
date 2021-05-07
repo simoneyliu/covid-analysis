@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { CovidData } from "../types/CustomTypes";
 
 async function get(path: string) {
 	try {
@@ -12,7 +13,7 @@ async function get(path: string) {
 
 const useFetch = (url: string) => {
 	const [status, setStatus] = useState("idle");
-	const [data, setData] = useState([]);
+	const [data, setData] = useState<CovidData>();
 
 	useEffect(() => {
 		if (!url) return;

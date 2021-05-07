@@ -1,6 +1,6 @@
 function MenuComponent(props: any) {
 	return (
-		<div>
+		<div className="panel_container">
 			<span className="menu-title">Menu</span>
 
 			<span className="covid-title">COVID-19</span>

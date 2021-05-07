@@ -1,9 +1,19 @@
+:root {
+	--theme-dark-blue: #14213d;
+	--theme-dark-gray: #4f5d75;
+	--theme-light-gray: #e5e5e5;
+	--theme-orange-pink: #ef8354;
+	--theme-black: #000000;
+	--theme-yellow: #fca311;
+}
+
 body {
 	margin: 0;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
 		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
 		sans-serif;
 	height: 100%;
+	background-color: white;
 }
 
 html {
@@ -14,10 +24,7 @@ html {
 *::after {
 	box-sizing: inherit;
 }
-body {
-	margin: 0;
-	background-color: white;
-}
+
 .master_wrapper {
 	background-color: white;
 }
@@ -28,6 +35,9 @@ body {
 	flex-wrap: nowrap;
 	justify-content: center;
 	height: 60px;
+	position: fixed;
+	width: 100%;
+	z-index: 1;
 }
 .wave-container {
 	position: relative;
@@ -91,6 +101,17 @@ body {
 }
 .refresh_button:focus {
 	outline: 0;
+}
+
+.sticky {
+	background-color: var(--theme-dark-blue);
+	position: fixed;
+	width: 100%;
+	height: 250px;
+	top: 0;
+	z-index: 0;
+	border-bottom: 1px solid gray;
+	border-radius: 0 0 20px 20px;
 }
 
 // For Mobile
