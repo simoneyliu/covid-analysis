@@ -1,6 +1,12 @@
-import { Actuals, Annotations, Metrics, RiskLevels } from "./USTypes";
+import {
+	Actuals,
+	Annotations,
+	Metrics,
+	RiskLevels,
+	USCovidData,
+} from "./USTypes";
 
-export interface USTimeSeries {
+export interface USTimeSeries extends USCovidData {
 	fips: string;
 	country: string;
 	state: string;
@@ -17,7 +23,7 @@ export interface USTimeSeries {
 	lastUpdatedDate: string;
 	url: string;
 	metricsTimeseries: MetricsTimeSeries;
-	actualsTimeseries: ActualsTimeseries;
+	actualsTimeseries: ActualsTimeseries[];
 	riskLevelsTimeseries: RiskLevelsTimeseries;
 }
 

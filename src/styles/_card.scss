@@ -22,6 +22,10 @@
 	color: var(--theme-dark-blue);
 }
 
+.card-margin {
+	margin: 15px;
+}
+
 // .card:hover {
 // 	transform: translateY(-20px);
 // 	transition: 0.4s ease-out;
@@ -120,6 +124,7 @@ svg {
 }
 .last-update {
 	text-align: center;
+	font-size: 12px;
 }
 
 .flag-container {
@@ -130,4 +135,8 @@ svg {
 
 .flag-container > img {
 	width: 30px;
+}
+
+.background-blue {
+	background-color: var(--theme-dark-blue);
 }

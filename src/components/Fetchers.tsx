@@ -13,7 +13,7 @@ async function get(path: string) {
 }
 
 const useFetch = (url: string) => {
-	const [data, setData] = useState<USCovidData | USTimeSeries>();
+	const [data, setData] = useState<USTimeSeries>();
 
 	useEffect(() => {
 		if (!url) return;
