@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { USTimeSeries } from "../types/USTimeSeriesTypes";
-import { USCovidData } from "../types/USTypes";
 
 async function get(path: string) {
 	try {

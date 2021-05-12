@@ -1239,8 +1239,9 @@ h1 {
   color: var(--theme-dark-blue);
 }
 
-.card-margin {
+.card-spacing {
   margin: 15px;
+  padding: 15px;
 }
 
 .title {
@@ -1326,6 +1327,7 @@ svg {
 .last-update {
   text-align: center;
   font-size: 12px;
+  padding-bottom: 5px;
 }
 
 .flag-container {

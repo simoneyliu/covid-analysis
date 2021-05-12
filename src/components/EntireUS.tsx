@@ -3,9 +3,8 @@ import "react-circular-progressbar/dist/styles.css";
 import { USCovidData } from "../types/USTypes";
 import usFlag from "../assets/img/flag_us.png";
 import Chart from "react-apexcharts";
-import React, { Component } from "react";
+import React from "react";
 import { ActualsTimeseries } from "../types/USTimeSeriesTypes";
-import { data } from "jquery";
 
 const { REACT_APP_COVID_API_KEY } = process.env;
 
@@ -29,16 +28,6 @@ function EntireUS() {
 			data.actuals.vaccinationsCompleted.toLocaleString(),
 			+percentage.toFixed(1),
 		];
-	}
-
-	function getColorByPercent(percent: number) {
-		if (percent < 50) {
-			return "red";
-		} else if (percent >= 50 && percent < 70) {
-			return "yellow";
-		} else {
-			return "green";
-		}
 	}
 
 	if (data) {
@@ -73,34 +62,11 @@ function EntireUS() {
 		});
 	}
 
-	console.log("30 days: ", lastThirtyDaysData);
-
-	let isMobile = false;
-	if (window.screen.width < 800) {
-		isMobile = true;
-	}
+	// console.log("30 days: ", lastThirtyDaysData);
 
 	return (
 		<div className="entire-us">
 			<div className="dashboard_container">
-				{/* <div className="circle_container">
-					<ChangingProgressProvider
-						values={[0, vaccinatedPercentage]}
-						repeat={false}
-					>
-						{(percentage: any) => (
-							<CircularProgressbar
-								value={percentage}
-								text={`${percentage}%`}
-								styles={buildStyles({
-									textColor: getColorByPercent(percentage),
-									pathColor: getColorByPercent(percentage),
-									textSize: "14px",
-								})}
-							/>
-						)}
-					</ChangingProgressProvider>
-				</div> */}
 				<div className="container">
 					<div className="card">
 						<div className="flag-container">
@@ -135,8 +101,8 @@ function EntireUS() {
 			</div>
 			{lastThirtyDaysData.length > 0 ? (
 				<div className="container">
-					<div className="card card-margin background-blue">
-						<LineChart dataTimeseries={lastThirtyDaysData} />
+					<div className="card card-spacing background-blue">
+						<AreaChart dataTimeseries={lastThirtyDaysData} />
 					</div>
 				</div>
 			) : (
@@ -146,105 +112,115 @@ function EntireUS() {
 	);
 }
 
-interface LineChartState {
+interface AreaChartState {
 	options: any;
 	series: any;
 }
 
-interface LineChartProps {
+interface AreaChartProps {
 	dataTimeseries: ActualsTimeseries[];
 }
 
-class LineChart extends React.Component<LineChartProps, LineChartState> {
-	constructor(props: LineChartProps) {
+class AreaChart extends React.Component<AreaChartProps, AreaChartState> {
+	constructor(props: AreaChartProps) {
 		super(props);
 
+		this.state = {
+			options: null,
+			series: null,
+		};
+
+		this.renderChart = this.renderChart.bind(this);
+	}
+
+	componentDidMount() {
 		this.renderChart();
 	}
 
-	renderChart = () => {
+	renderChart() {
 		var dateArray: Array<String> = [];
 		var newCases: Array<Number> = [];
+		var newDeaths: Array<Number> = [];
 		this.props.dataTimeseries.forEach((element) => {
 			dateArray.push(element.date);
 			newCases.push(element.newCases);
+			newDeaths.push(element.newDeaths);
 		});
-		this.state = {
+		var options = {
 			series: [
 				{
 					name: "Cases",
 					data: newCases,
 				},
+				{
+					name: "Deaths",
+					data: newDeaths,
+					color: "red",
+				},
 			],
 			options: {
-				chart: {
-					height: 350,
-					type: "line",
-				},
-				stroke: {
-					width: 7,
-					curve: "smooth",
-				},
-				xaxis: {
-					type: "datetime",
-					categories: dateArray,
-					tickAmount: 10,
-				},
 				title: {
-					text: "Covid Cases",
+					text: "Cases in the US",
 					align: "left",
 					style: {
 						fontSize: "16px",
 						color: "white",
 					},
 				},
-				fill: {
-					type: "gradient",
-					gradient: {
-						shade: "dark",
-						gradientToColors: ["#FDD835"],
-						shadeIntensity: 1,
-						type: "horizontal",
-						opacityFrom: 1,
-						opacityTo: 1,
-						stops: [0, 100, 100, 100],
+				legend: {
+					show: true,
+					labels: {
+						colors: "white",
 					},
 				},
-				markers: {
-					size: 4,
-					colors: ["#FFA41B"],
-					strokeColors: "#fff",
-					strokeWidth: 2,
-					hover: {
-						size: 7,
+				dataLabels: {
+					enabled: false,
+				},
+				stroke: {
+					curve: "smooth",
+				},
+				xaxis: {
+					type: "datetime",
+					categories: dateArray,
+					labels: {
+						show: true,
+						style: {
+							colors: "white",
+						},
 					},
 				},
 				yaxis: {
 					min: 0,
-					title: {
-						text: "Cases",
+					max: 90000,
+					tickAmount: 5,
+					forceNiceScale: false,
+					labels: {
+						show: true,
+						style: {
+							colors: ["white"],
+						},
 					},
-				},
-				sparkline: {
-					enabled: true,
-				},
-				grid: {
-					row: {
-						colors: "transparent",
-					},
+					// logarithmic: true,
 				},
 			},
 		};
-	};
+
+		this.setState({ series: options.series, options: options.options });
+	}
 
 	render() {
 		return (
 			<div className="line-chart">
-				<Chart
-					options={this.state.options}
-					series={this.state.series}
-					height="280"
-				/>
+				{this.state.series ? (
+					<Chart
+						options={this.state.options}
+						series={this.state.series}
+						height="250"
+						type="area"
+					/>
+				) : (
+					""
+				)}
 			</div>
 		);
 	}

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 function MenuComponent(props: any) {
 	return (
 		<div className="panel_container">

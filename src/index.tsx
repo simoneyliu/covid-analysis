@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./assets/styles/ui.css";
-import { Collection } from "./components/Collection";
+// import { Collection } from "./components/Collection";
 import { Panel } from "./components/Panel";
 import { Home } from "./components/Home";
 

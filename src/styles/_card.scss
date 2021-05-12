@@ -22,8 +22,9 @@
 	color: var(--theme-dark-blue);
 }
 
-.card-margin {
+.card-spacing {
 	margin: 15px;
+	padding: 15px;
 }
 
 // .card:hover {
@@ -125,6 +126,7 @@ svg {
 .last-update {
 	text-align: center;
 	font-size: 12px;
+	padding-bottom: 5px;
 }
 
 .flag-container {
